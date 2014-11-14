@@ -18,12 +18,13 @@
     </ul>
   </div>
 
-  <div class="row" ng-show="casaSeleccionada != null">
-    <div class="jumbotron">
+  <div class="jumbotron" ng-show="casaSeleccionada != null">
+    <div class="container">
       <h1>Fuerzas de <strong>{{casaSeleccionada.nombre}}</strong></h1>
       <ul class="list-group">
         <li class="list-group-item col-md-6" ng-repeat="fuerza in fuerzas">
-          <h4 class="list-group-item-heading">{{fuerza.type}}</h4>
+          {{fuerza.tipo}}
+          <span class="badge alert-danger">{{fuerza.poder()}}</span>
         </li>
       </ul>
     </div>
