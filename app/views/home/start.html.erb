@@ -1,12 +1,17 @@
 <div ng-controller="MainCtrl">
-  <h1>
-    Casas
-    <small ng-show="isLoading">Consultando con los Siete, espere por favor...</small>
-  </h1>
+  <div class="row">
+    <h1 class="col-md-6">
+      Casas
+      <small ng-show="isLoading">Consultando con los Siete, espere por favor...</small>
+    </h1>
+    <form class="col-md-4 pull-right">
+      <input type="search" class="form-control" placeholder="Buscar por nombre de casa..." ng-model="busqueda">
+    </form>
+  </div>
 
   <div class="row">
     <ul class="list-group">
-      <li class="list-group-item col-md-6" ng-repeat="casa in casas">
+      <li class="list-group-item col-md-6" ng-repeat="casa in casas | filter: {nombre: busqueda}">
         <h4 class="list-group-item-heading">{{casa.nombre}}</h4>
         <p class="list-group-item-text">
           Fundada en el año <strong>{{casa.fundada_en}}</strong> - Patrimonio <strong>{{casa.patrimonio | currency}}</strong>
