@@ -7,7 +7,25 @@ describe("MainCtrl", function() {
     ctrl = $controller('MainCtrl', { $scope: scope });
   }));
 
-  it('should agregar un mensaje de bienvenida al scope', inject(function($controller) {
-    expect(scope.mensajeBienvenida).toBe("Bienvenido a GOT");
+  it('should inicializar datos dummy de las casas', inject(function($controller) {
+    var casasEsperadas = [
+      {
+        nombre: "Bolton",
+        patrimonio: 12343,
+        fundada_en: 130
+      },
+      {
+        nombre: "Lannister",
+        patrimonio: 35205,
+        fundada_en: 529
+      },
+      {
+        nombre: "Baratheon",
+        patrimonio: 38980,
+        fundada_en: 166
+      }
+    ];
+
+    expect(scope.casas).toEqual(casasEsperadas);
   }));
 });

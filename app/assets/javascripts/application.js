@@ -18,5 +18,21 @@
 var app = angular.module("handson-dds", []);
 
 app.controller("MainCtrl", function ($scope) {
-  $scope.mensajeBienvenida = "Bienvenido a la Red Wedding";
+  $scope.casas = [
+    {
+      nombre: "Bolton",
+      patrimonio: 12343,
+      fundada_en: 130
+    },
+    {
+      nombre: "Lannister",
+      patrimonio: 35205,
+      fundada_en: 529
+    },
+    {
+      nombre: "Baratheon",
+      patrimonio: 38980,
+      fundada_en: 166
+    }
+  ];
 });
