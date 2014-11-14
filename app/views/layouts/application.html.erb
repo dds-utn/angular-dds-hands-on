@@ -9,16 +9,16 @@
   <%= csrf_meta_tags %>
 </head>
 
-<body>
+<body ng-app="handson-dds">
   <%= render 'shared/nav' %>
 
   <div class="container">
     <% if content_for?(:header) %>
       <%= content_for(:header) %>
     <% end %>
-    
+
     <%= render 'shared/alert_messages' %>
-    
+
     <%= yield %>
 
   </div>

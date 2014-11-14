@@ -14,3 +14,9 @@
 //= require jquery_ujs
 //= require angular.min
 //= require_tree .
+
+var app = angular.module("handson-dds", []);
+
+app.controller("MainCtrl", function ($scope) {
+  $scope.mensajeBienvenida = "Bienvenido a la Red Wedding";
+});
