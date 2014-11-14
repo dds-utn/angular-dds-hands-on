@@ -36,3 +36,11 @@ $ rails s
 
 * Ingresar a la url [localhost:3000](http://localhost:3000)
 
+
+**Para correr los tests:**
+* Levantar el server de test
+```
+$ rails jasmine
+```
+
+* Ingresar a la url [localhost:8888](http://localhost:8888)
