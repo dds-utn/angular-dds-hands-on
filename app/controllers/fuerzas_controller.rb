@@ -1,7 +1,13 @@
 class FuerzasController < ApplicationController
 
   def index
-    @fuerzas = Fuerza.where(type: ['Aerea','Naval','Terrestre']).order(:casa_id)
+    @fuerzas = []
+
+    if (params.has_key? :casa)
+      @fuerzas = Fuerza.where(type: ['Aerea','Naval','Terrestre'], casa_id: params[:casa])
+    else
+      @fuerzas = Fuerza.where(type: ['Aerea','Naval','Terrestre']).order(:casa_id)
+    end
 
     respond_with(@fuerzas)
   end

@@ -2,7 +2,7 @@ class CasasController < ApplicationController
 
   def index
     @casas = Casa.all
-    sleep(2.0)
+    # sleep(2.0)
 
     respond_with(@casas)
   end
