@@ -40,7 +40,7 @@ $ rails s
 **Para correr los tests:**
 * Levantar el server de test
 ```
-$ rails jasmine
+$ rake jasmine
 ```
 
 * Ingresar a la url [localhost:8888](http://localhost:8888)
