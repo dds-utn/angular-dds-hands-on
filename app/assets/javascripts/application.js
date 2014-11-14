@@ -24,4 +24,11 @@ app.controller("MainCtrl", function ($scope, $http) {
     $scope.casas = response.casas;
     $scope.isLoading = false;
   });
+
+  $scope.cargarFuerzas = function(casa) {
+    $http.get("/fuerzas.json?casa=" + casa.id).success(function (response) {
+      $scope.casaSeleccionada = casa;
+      $scope.fuerzas = response.fuerzas;
+    })
+  }
 });

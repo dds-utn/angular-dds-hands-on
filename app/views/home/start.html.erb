@@ -4,12 +4,28 @@
     <small ng-show="isLoading">Consultando con los Siete, espere por favor...</small>
   </h1>
 
-  <ul class="list-group">
-    <li class="list-group-item col-md-6" ng-repeat="casa in casas">
-      <h4 class="list-group-item-heading">{{casa.nombre}}</h4>
-      <p class="list-group-item-text">
-        Fundada en el año <strong>{{casa.fundada_en}}</strong> - Patrimonio <strong>{{casa.patrimonio | currency}}</strong>
-      </p>
-    </li>
-  </ul>
+  <div class="row">
+    <ul class="list-group">
+      <li class="list-group-item col-md-6" ng-repeat="casa in casas">
+        <h4 class="list-group-item-heading">{{casa.nombre}}</h4>
+        <p class="list-group-item-text">
+          Fundada en el año <strong>{{casa.fundada_en}}</strong> - Patrimonio <strong>{{casa.patrimonio | currency}}</strong>
+        </p>
+        <span class="pull-right">
+          <button class="btn btn-primary" ng-click="cargarFuerzas(casa)">Ver fuerzas</button>
+        </span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="row" ng-show="casaSeleccionada != null">
+    <div class="jumbotron">
+      <h1>Fuerzas de <strong>{{casaSeleccionada.nombre}}</strong></h1>
+      <ul class="list-group">
+        <li class="list-group-item col-md-6" ng-repeat="fuerza in fuerzas">
+          <h4 class="list-group-item-heading">{{fuerza.type}}</h4>
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>
