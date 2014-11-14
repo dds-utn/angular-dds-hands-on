@@ -70,6 +70,7 @@ app.controller("MainCtrl", function ($scope, $http, FuerzaConverter) {
     $http.get("/fuerzas.json?casa=" + casa.id).success(function (response) {
       $scope.casaSeleccionada = casa;
       $scope.fuerzas = response.fuerzas.map(FuerzaConverter);
+      $scope.poderTotal = $scope.fuerzas.reduce(function (acum, elem) { return acum + elem.poder(); }, 0);
     })
   }
 });

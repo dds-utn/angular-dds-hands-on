@@ -20,7 +20,7 @@
 
   <div class="jumbotron" ng-show="casaSeleccionada != null">
     <div class="container">
-      <h1>Fuerzas de <strong>{{casaSeleccionada.nombre}}</strong></h1>
+      <h1>Fuerzas de <strong>{{casaSeleccionada.nombre}}</strong> ({{poderTotal}})</h1>
       <ul class="list-group">
         <li class="list-group-item col-md-6" ng-repeat="fuerza in fuerzas">
           {{fuerza.tipo}}
