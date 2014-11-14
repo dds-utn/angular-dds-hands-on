@@ -18,7 +18,10 @@
 var app = angular.module("handson-dds", []);
 
 app.controller("MainCtrl", function ($scope, $http) {
+  $scope.isLoading = true;
+
   $http.get("/casas.json").success(function (response) {
     $scope.casas = response.casas;
+    $scope.isLoading = false;
   });
 });
