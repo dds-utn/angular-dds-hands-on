@@ -15,48 +15,50 @@
 //= require angular.min
 //= require_tree .
 
-var Naval = function() {
-  this.tipo = "Naval";
-};
-Naval.prototype.poder = function() {
-  return 900;
-};
-
-var Aerea = function(cantidadDragones) {
-  this.tipo = "Aerea";
-  this.cantidadDragones = cantidadDragones;
-};
-Aerea.prototype.poder = function() {
-  return this.cantidadDragones * 100;
-};
-
-var Terrestre = function(cantidadSoldados) {
-  this.tipo = "Terrestre";
-  this.cantidadSoldados = cantidadSoldados;
-};
-Terrestre.prototype.poder = function() {
-  return this.cantidadSoldados * 50;
-};
-
-var convertToFuerza = function(json) {
-  switch (json.type) {
-    case "Naval":
-      return new Naval();
-
-    case "Aerea":
-      return new Aerea(json.cantidad_dragones);
-
-    case "Terrestre":
-      return new Terrestre(json.cantidad_soldados);
-
-    default:
-      throw new Error("No se como crear una fuerza de tipo " + json.type)
-  }
-}
-
 var app = angular.module("handson-dds", []);
 
-app.controller("MainCtrl", function ($scope, $http) {
+app.service("FuerzaConverter", function() {
+  var Naval = function() {
+    this.tipo = "Naval";
+  };
+  Naval.prototype.poder = function() {
+    return 900;
+  };
+
+  var Aerea = function(cantidadDragones) {
+    this.tipo = "Aerea";
+    this.cantidadDragones = cantidadDragones;
+  };
+  Aerea.prototype.poder = function() {
+    return this.cantidadDragones * 100;
+  };
+
+  var Terrestre = function(cantidadSoldados) {
+    this.tipo = "Terrestre";
+    this.cantidadSoldados = cantidadSoldados;
+  };
+  Terrestre.prototype.poder = function() {
+    return this.cantidadSoldados * 50;
+  };
+
+  return function(json) {
+    switch (json.type) {
+      case "Naval":
+        return new Naval();
+
+      case "Aerea":
+        return new Aerea(json.cantidad_dragones);
+
+      case "Terrestre":
+        return new Terrestre(json.cantidad_soldados);
+
+      default:
+        throw new Error("No se como crear una fuerza de tipo " + json.type)
+    }
+  };
+});
+
+app.controller("MainCtrl", function ($scope, $http, FuerzaConverter) {
   $scope.isLoading = true;
 
   $http.get("/casas.json").success(function (response) {
@@ -67,7 +69,7 @@ app.controller("MainCtrl", function ($scope, $http) {
   $scope.cargarFuerzas = function(casa) {
     $http.get("/fuerzas.json?casa=" + casa.id).success(function (response) {
       $scope.casaSeleccionada = casa;
-      $scope.fuerzas = response.fuerzas.map(convertToFuerza);
+      $scope.fuerzas = response.fuerzas.map(FuerzaConverter);
     })
   }
 });
