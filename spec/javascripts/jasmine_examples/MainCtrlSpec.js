@@ -7,25 +7,25 @@ describe("MainCtrl", function() {
     ctrl = $controller('MainCtrl', { $scope: scope });
   }));
 
-  it('should inicializar datos dummy de las casas', inject(function($controller) {
-    var casasEsperadas = [
-      {
-        nombre: "Bolton",
-        patrimonio: 12343,
-        fundada_en: 130
-      },
-      {
-        nombre: "Lannister",
-        patrimonio: 35205,
-        fundada_en: 529
-      },
-      {
-        nombre: "Baratheon",
-        patrimonio: 38980,
-        fundada_en: 166
-      }
-    ];
+  it('should traer las casas de la API al inicializar', inject(function($httpBackend) {
+    $httpBackend.expectGET("/casas.json").respond(200, {
+      casas: [
+        {
+          nombre: "Bolton",
+          fundada_en: 130,
+          patrimonio: 12343
+        }
+      ]
+    });
 
-    expect(scope.casas).toEqual(casasEsperadas);
+    $httpBackend.flush();
+
+    expect(scope.casas).toEqual([
+        {
+          nombre: "Bolton",
+          fundada_en: 130,
+          patrimonio: 12343
+        }
+    ]);
   }));
 });

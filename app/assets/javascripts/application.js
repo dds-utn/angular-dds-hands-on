@@ -17,22 +17,8 @@
 
 var app = angular.module("handson-dds", []);
 
-app.controller("MainCtrl", function ($scope) {
-  $scope.casas = [
-    {
-      nombre: "Bolton",
-      patrimonio: 12343,
-      fundada_en: 130
-    },
-    {
-      nombre: "Lannister",
-      patrimonio: 35205,
-      fundada_en: 529
-    },
-    {
-      nombre: "Baratheon",
-      patrimonio: 38980,
-      fundada_en: 166
-    }
-  ];
+app.controller("MainCtrl", function ($scope, $http) {
+  $http.get("/casas.json").success(function (response) {
+    $scope.casas = response.casas;
+  });
 });
