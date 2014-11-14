@@ -1,11 +1,11 @@
 <div ng-controller="MainCtrl">
   <h1>Casas</h1>
 
-  <ul>
-    <li ng-repeat="casa in casas">
-      <strong>{{casa.nombre}}</strong>
-      <p>
-        Fundada en el año {{casa.fundada_en}} - Patrimonio {{12343 | currency}}
+  <ul class="list-group">
+    <li class="list-group-item" ng-repeat="casa in casas">
+      <h4 class="list-group-item-heading">{{casa.nombre}}</h4>
+      <p class="list-group-item-text">
+        Fundada en el año <strong>{{casa.fundada_en}}</strong> - Patrimonio <strong>{{casa.patrimonio | currency}}</strong>
       </p>
     </li>
   </ul>
